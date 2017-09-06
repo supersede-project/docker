@@ -1,5 +1,6 @@
 FROM java:8
-COPY wso2is-5.3.0.zip /supersede/wso2is-5.3.0.zip
+#COPY wso2is-5.3.0.zip /supersede/wso2is-5.3.0.zip
+RUN wget -P /supersede --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download"  http://product-dist.wso2.com/products/identity-server/5.3.0/wso2is-5.3.0.zip
 ADD apache-ant-1.10.1-bin.tar.gz /supersede/
 RUN cd /supersede;jar xf wso2is-5.3.0.zip;cd wso2is-5.3.0/bin;chmod +x wso2server.sh;export CARBON_HOME=/supersede/wso2is-5.3.0
 RUN cd /supersede/apache-ant-1.10.1/bin;chmod +x ant

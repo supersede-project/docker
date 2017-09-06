@@ -1,6 +1,7 @@
 FROM java:8
-COPY wso2esb-5.0.0.zip /supersede/wso2esb-5.0.0.zip
+#COPY wso2esb-5.0.0.zip /supersede/wso2esb-5.0.0.zip
 ADD apache-ant-1.10.1-bin.tar.gz /supersede/
+RUN wget -P /supersede --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download"  http://product-dist.wso2.com/products/enterprise-service-bus/5.0.0/wso2esb-5.0.0.zip
 RUN cd /supersede;jar xf wso2esb-5.0.0.zip;cd wso2esb-5.0.0/bin;chmod +x wso2server.sh;export CARBON_HOME=/supersede/wso2esb-5.0.0
 RUN cd /supersede/apache-ant-1.10.1/bin;chmod +x ant
 #Configure OFFSET - See CMD execution
