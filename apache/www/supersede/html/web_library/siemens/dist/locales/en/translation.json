@@ -1,0 +1,34 @@
+{
+  "general": {
+    "review_feedback": "Review feedback",
+    "review_feedback_title": "Your feedback",
+    "feedback_submit_button_title": "Submit feedback",
+    "mandatory_default_text": "This field can't be blank",
+    "back": "back",
+    "validation_max_length_error_message": "The maximum length of this field is {{ maxLength }}! You typed {{ currentLength }} characters.",
+    "discard_feedback": "Discard feedback",
+    "cancel": "Cancel",
+    "dialog_close_button_title": "Minimize"
+  },
+  "text": {
+    "text_type_text_clear": "Clear the text input"
+  },
+  "screenshot": {
+    "take_screenshot": "Take a screenshot",
+    "take_new_screenshot": "Take a new screenshot",
+    "actions": "Actions",
+    "stickers": "Stickers",
+    "rectangle": "rectangle",
+    "blacken": "blacken",
+    "circle": "circle",
+    "arrow": "arrow",
+    "freehand": "freehand",
+    "crop": "Crop",
+    "text": "Add text",
+    "undo": "undo",
+    "remove": "Delete screenshot"
+  },
+  "rating": {
+    "review_title": "Rating"
+  }
+}

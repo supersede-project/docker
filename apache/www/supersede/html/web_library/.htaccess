@@ -1,0 +1,4 @@
+Header add Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Age "3000"
+Header add Access-Control-Allow-Methods "GET"
+
