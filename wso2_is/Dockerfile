@@ -9,8 +9,12 @@ RUN cd /supersede/apache-ant-1.10.1/bin;chmod +x ant
 RUN sed -i -- 's/<Password>admin<\/Password>/<Password>admin2<\/Password>/g' /supersede/wso2is-5.3.0/repository/conf/user-mgt.xml
 #Below strategy to modify admin password does not work
 #RUN cd /supersede/wso2is-5.3.0/bin;chmod +x chpasswd.sh;export ANT_HOME=/supersede/apache-ant-1.10.1;export PATH=$PATH:${ANT_HOME}/bin;./chpasswd.sh --db-url "jdbc:h2:$CARBON_HOME/repository/database/WSO2CARBON_DB" --username admin --new-password admin2
+#See https://docs.wso2.com/display/IS530/Upgrading+from+a+Previous+Release
+#to migrate from a previous IS instance
 #Configure tenants
-#Configure identity servers
+#Configure identity service providers
+#Configure wso2is-5.0.0/repository/conf/carbon.xml In section Axis2Config: disable <HideAdminServiceWSDLs>false</HideAdminServiceWSDLs>
+
 #Declare ports. When launching an image use -p 9445:9445 flag
 EXPOSE 9445
 CMD /supersede/wso2is-5.3.0/bin/wso2server.sh -DportOffset=2
