@@ -1,0 +1,36 @@
+11-23 17:18:15 jdbc[2]: SQLException
+org.h2.jdbc.JdbcSQLException: Parameter "#6" is not set; SQL statement:
+UPDATE UM_USER SET UM_USER_PASSWORD= ?, UM_SALT_VALUE=?, UM_REQUIRE_CHANGE=?, UM_CHANGED_TIME=? WHERE UM_USER_NAME= ? AND UM_TENANT_ID=? [90012-140]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:73)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:153)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:69)
+	at org.h2.command.Command.executeUpdate(Command.java:199)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:141)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:127)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager.updateStringValuesToDatabase(JDBCUserStoreManager.java:2043)
+	at org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager.doUpdateCredentialByAdmin(JDBCUserStoreManager.java:1948)
+	at org.wso2.carbon.core.util.PasswordUpdater.run(PasswordUpdater.java:161)
+	at org.wso2.carbon.core.util.PasswordUpdater.main(PasswordUpdater.java:48)
+11-23 17:22:33 jdbc[2]: SQLException
+org.h2.jdbc.JdbcSQLException: Parameter "#6" is not set; SQL statement:
+UPDATE UM_USER SET UM_USER_PASSWORD= ?, UM_SALT_VALUE=?, UM_REQUIRE_CHANGE=?, UM_CHANGED_TIME=? WHERE UM_USER_NAME= ? AND UM_TENANT_ID=? [90012-140]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:327)
+	at org.h2.message.DbException.get(DbException.java:167)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:73)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:153)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:69)
+	at org.h2.command.Command.executeUpdate(Command.java:199)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:141)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:127)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager.updateStringValuesToDatabase(JDBCUserStoreManager.java:2043)
+	at org.wso2.carbon.user.core.jdbc.JDBCUserStoreManager.doUpdateCredentialByAdmin(JDBCUserStoreManager.java:1948)
+	at org.wso2.carbon.core.util.PasswordUpdater.run(PasswordUpdater.java:161)
+	at org.wso2.carbon.core.util.PasswordUpdater.main(PasswordUpdater.java:48)
