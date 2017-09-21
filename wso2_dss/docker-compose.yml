@@ -4,6 +4,8 @@ services:
     build: .
     ports:
       - "9446:9446"
+    depends_on:
+      - "postgres"
   postgres:
     image: "supersede/postgres"
     

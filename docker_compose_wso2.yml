@@ -1,0 +1,23 @@
+version: '2'
+services:
+  dss:
+    image: "supersede/dss"
+    ports:
+      - "9446:9446"
+    depends_on:
+      - "postgres"
+  is:
+    image: "supersede/is"
+    ports:
+      - "9445:9445"
+  esb:
+    image: "supersede/esb"
+    ports:
+      - "9443:9443"
+  mb:
+    image: "supersede/mb"
+    ports:
+      - "9447:9447"
+  postgres:
+    image: "supersede/postgres"
+    
