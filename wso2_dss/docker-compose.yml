@@ -1,0 +1,9 @@
+version: '2'
+services:
+  dss:
+    build: .
+    ports:
+      - "9446:9446"
+  postgres:
+    image: "supersede/postgres"
+    

@@ -26,6 +26,7 @@ COPY postgresql-8.4-703.jdbc4.jar /supersede/wso2dss-3.5.1/repository/components
 #Restart container
 
 #Configure Supersede dataservices
+COPY WSO2CARBON_DB.h2.db /supersede/wso2dss-3.5.1/repository/database/WSO2CARBON_DB.h2.db
 #Deploy *.dbs in <DSS_HOME>/repository/deployment/server/dataservices
 COPY *.dbs /supersede/wso2dss-3.5.1/repository/deployment/server/dataservices/
 
