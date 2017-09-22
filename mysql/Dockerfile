@@ -1,4 +1,6 @@
 FROM mysql:5.7
+MAINTAINER  Yosu Gorroñogoitia <jesus.gorronogoitia@atos.net>
+
 ENV MYSQL_ROOT_PASSWORD supersede
 #ENV MYSQL_DATABASE supersede
 #ENV MYSQL_USER supersede 

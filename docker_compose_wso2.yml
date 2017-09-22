@@ -6,18 +6,25 @@ services:
       - "9446:9446"
     depends_on:
       - "postgres"
+    container_name: supersede-dss
   is:
     image: "supersede/is"
     ports:
       - "9445:9445"
+    container_name: supersede-is
   esb:
     image: "supersede/esb"
     ports:
       - "9443:9443"
+      - "8280:8280"
+    container_name: supersede-esb
   mb:
     image: "supersede/mb"
     ports:
       - "9447:9447"
+      - "5676:5676"
+    container_name: supersede-mb
   postgres:
     image: "supersede/postgres"
+    container_name: supersede-postgres
     

@@ -1,4 +1,6 @@
 FROM postgres:9.6
+MAINTAINER  Yosu Gorroñogoitia <jesus.gorronogoitia@atos.net>
+
 ENV POSTGRES_USER supersede
 ENV POSTGRES_PASSWORD supersede
 

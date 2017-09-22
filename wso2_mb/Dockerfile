@@ -1,4 +1,6 @@
 FROM java:8
+MAINTAINER  Yosu Gorroñogoitia <jesus.gorronogoitia@atos.net>
+
 #COPY wso2mb-3.2.0.zip /supersede/wso2mb-3.2.0.zip
 RUN wget -P /supersede --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download"  http://product-dist.wso2.com/products/message-broker/3.2.0/wso2mb-3.2.0.zip
 #ADD apache-ant-1.10.1-bin.tar.gz /supersede/
@@ -11,4 +13,5 @@ RUN sed -i -- 's/<Password>admin<\/Password>/<Password>admin2<\/Password>/g' /su
 #RUN cd /supersede/wso2mb-3.2.0/bin;chmod +x chpasswd.sh;export ANT_HOME=/supersede/apache-ant-1.10.1;export PATH=$PATH:${ANT_HOME}/bin;./chpasswd.sh --db-url "jdbc:h2:$CARBON_HOME/repository/database/WSO2CARBON_DB" --username admin --new-password admin2
 #Declare ports. When launching an image use -p 9447:9447 flag
 EXPOSE 9447
+EXPOSE 5676
 CMD /supersede/wso2mb-3.2.0/bin/wso2server.sh -DportOffset=4

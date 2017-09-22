@@ -1,4 +1,6 @@
 FROM java:8
+MAINTAINER  Yosu Gorroñogoitia <jesus.gorronogoitia@atos.net>
+
 #COPY wso2dss-3.5.1.zip /supersede/wso2dss-3.5.1.zip
 RUN wget -P /supersede --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download"  http://product-dist.wso2.com/products/data-services-server/3.5.1/wso2dss-3.5.1.zip
 #ADD apache-ant-1.10.1-bin.tar.gz /supersede/

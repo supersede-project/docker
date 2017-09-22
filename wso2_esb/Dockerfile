@@ -1,4 +1,6 @@
 FROM java:8
+MAINTAINER  Yosu Gorroñogoitia <jesus.gorronogoitia@atos.net>
+
 #COPY wso2esb-5.0.0.zip /supersede/wso2esb-5.0.0.zip
 #ADD apache-ant-1.10.1-bin.tar.gz /supersede/
 RUN wget -P /supersede --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download"  http://product-dist.wso2.com/products/enterprise-service-bus/5.0.0/wso2esb-5.0.0.zip
@@ -21,4 +23,5 @@ WORKDIR /supersede
 
 #Declare ports. When launching an image use -p 9443:9443 flag
 EXPOSE 9443
+EXPOSE 8280
 CMD /supersede/wso2esb-5.0.0/bin/wso2server.sh -DportOffset=0
