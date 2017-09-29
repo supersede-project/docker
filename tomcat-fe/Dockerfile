@@ -9,17 +9,34 @@ ADD multitenancy.properties /usr/local/tomcat/conf
 #Copy if.properties in $TOMCAT/conf/
 ADD if.properties /usr/local/tomcat/conf
 
+# FRONT-END
+
 #Copy ROOT.war in $TOMCAT/webapps/
 RUN rm -rf /usr/local/tomcat/webapps/ROOT/
-ADD ROOT.war /usr/local/tomcat/webapps
+ADD webapps/ROOT.war /usr/local/tomcat/webapps
 
 #Copy admin-user-manager-app.war in $TOMCAT/webapps/
-ADD admin-user-manager-app.war /usr/local/tomcat/webapps
+ADD webapps/admin-user-manager-app.war /usr/local/tomcat/webapps
 
 #Copy configuration-tools.war in $TOMCAT/webapps/
-ADD configuration-tools.war /usr/local/tomcat/webapps
+ADD webapps/configuration-tools.war /usr/local/tomcat/webapps
 
-#TODO Launch tomcat from $TOMCAT/bin to avoid the issue to locale the multitenancy.properties
+#DM GAME
+
+#Copy supersede-dm-app.war in $TOMCAT/webapps/
+ADD webapps/supersede-dm-app.war /usr/local/tomcat/webapps
+
+#Replan Dashboard
+ADD webapps/release-planner-app.war /usr/local/tomcat/webapps
+
+#Adaptation Dashboard, 
+ADD webapps/adaptation-dashboard.war /usr/local/tomcat/webapps
+
+#Metadata Storage
+ADD webapps/metadataStorage.war /usr/local/tomcat/webapps
+
+#Dependencies: MDM Frontend, Adapter, Replan Optimizer (BE), Replan Controller
+
+#Launch tomcat from $TOMCAT/bin to avoid the issue to locale the multitenancy.properties
 WORKDIR /usr/local/tomcat/bin
 CMD ["catalina.sh", "run"]
-
