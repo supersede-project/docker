@@ -36,7 +36,7 @@ ADD webapps/replan_optimizer.war /usr/local/tomcat/webapps
 #Model Repository Manager
 ADD webapps/modelrepositorymanager.war /usr/local/tomcat/webapps
 
-#Dependencies: Mysql
+#Dependencies: Mysql, Mongo DB
 
 #TODO: In future versions, build and configure WAR from Git repositories
 #1- Include docker-container version of IF library

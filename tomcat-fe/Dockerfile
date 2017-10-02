@@ -32,10 +32,7 @@ ADD webapps/release-planner-app.war /usr/local/tomcat/webapps
 #Adaptation Dashboard, 
 ADD webapps/adaptation-dashboard.war /usr/local/tomcat/webapps
 
-#Metadata Storage
-ADD webapps/metadataStorage.war /usr/local/tomcat/webapps
-
-#Dependencies: MDM Frontend, Adapter, Replan Optimizer (BE), Replan Controller
+#Dependencies: Adapter, Replan Optimizer (BE), Replan Controller
 
 #Launch tomcat from $TOMCAT/bin to avoid the issue to locale the multitenancy.properties
 WORKDIR /usr/local/tomcat/bin
