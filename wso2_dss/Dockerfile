@@ -35,3 +35,7 @@ COPY *.dbs /supersede/wso2dss-3.5.1/repository/deployment/server/dataservices/
 #Declare ports. When launching an image use -p 9446:9446 flag
 EXPOSE 9446
 CMD /supersede/wso2dss-3.5.1/bin/wso2server.sh -DportOffset=3
+
+# Requires: Postgres
+# Create image with:  docker build -t supersede/dss .
+# Instantiate container with: docker run --name supersede-dss --link supersede-postgres:postgres -p 9446:9446 -d supersede/dss

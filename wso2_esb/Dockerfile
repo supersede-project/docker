@@ -25,3 +25,8 @@ WORKDIR /supersede
 EXPOSE 9443
 EXPOSE 8280
 CMD /supersede/wso2esb-5.0.0/bin/wso2server.sh -DportOffset=0
+
+# Requires: 
+# Create image with:  docker build -t supersede/esb .
+# Instantiate container with: docker run --name supersede-esb -p 9443:9443 -d supersede/esb
+

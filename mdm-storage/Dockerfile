@@ -42,7 +42,10 @@ RUN sed -i -- 's/port="8443"/port="8445"/g' /usr/local/tomcat/conf/server.xml
 RUN sed -i -- 's/redirectPort="8443"/redirectPort="8445"/g' /usr/local/tomcat/conf/server.xml	
 	
 EXPOSE 8082
-# Requires mongodb: link to mongodb container in docker compose
+# Requires: mongodb: link to mongodb container in docker compose
+# Create image with:  docker build -t supersede/mdm-storage .
+# Instantiate container with: docker run -p 8082:8082 --name mdm-storage -d --link supersede-mongo:mongo supersede/mdm-storage
+
 
 WORKDIR /usr/local/tomcat/bin
 

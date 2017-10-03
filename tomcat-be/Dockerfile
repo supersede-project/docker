@@ -36,7 +36,6 @@ ADD webapps/replan_optimizer.war /usr/local/tomcat/webapps
 #Model Repository Manager
 ADD webapps/modelrepositorymanager.war /usr/local/tomcat/webapps
 
-#Dependencies: Mysql, Mongo DB
 
 #TODO: In future versions, build and configure WAR from Git repositories
 #1- Include docker-container version of IF library
@@ -65,3 +64,7 @@ EXPOSE 8081
 WORKDIR /usr/local/tomcat/bin
 CMD ["catalina.sh", "run"]
 
+
+# Requires: Mysql, ESB
+# Create image with:  docker build -t supersede/be .
+# Instantiate container with: docker run -d -p 8081:8081 --link supersede-mysql:mysql --link supersede-esb:esb supersede/be

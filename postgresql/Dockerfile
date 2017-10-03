@@ -12,3 +12,6 @@ RUN chmod +x /docker-entrypoint-initdb.d/3-setup.sh
 COPY . /supersede
 WORKDIR /supersede
 
+# Requires: 
+# Create image with:  docker build -t supersede/postgres .
+# Instantiate container with: docker run --name supersede-postgres -d supersede/postgres

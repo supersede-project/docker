@@ -39,7 +39,7 @@ WORkDIR DM/components/eu.supersede.dynadapt.dm.optimizer
 
 EXPOSE 8091
 
-# Requires: ESB, Tomcat-BE (Model Repository), Tomcat-FE (Adaptation-Dashboard)
+# Requires: ESB, MB, Tomcat-BE (Model Repository), Tomcat-FE (Adaptation-Dashboard)
 # Create image with:  docker build -t supersede/dm-optimizer .
 # Instantiate container with: docker run -d -p 8091:8091 --name dm-optimizer -h dm-optimizer supersede/dm-optimizer
 

@@ -13,7 +13,10 @@ RUN cd . && npm install
 	
 EXPOSE 3000
 
-# Requires mdm-storage
+# Requires: mdm-storage
+# Create image with:  docker build -t supersede/mdm-frontend .
+# Instantiate container with: docker run -p 3000:3000 --name mdm-frontend -d --link mdm-storage:mdm-storage supersede/mdm-frontend
+
 
 CMD node app.js
 

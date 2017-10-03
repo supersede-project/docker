@@ -16,3 +16,6 @@ RUN chmod +x /docker-entrypoint-initdb.d/2-setup.sh
 COPY . /supersede
 WORKDIR /supersede
 
+# Requires: 
+# Create image with:  docker build -t supersede/mysql .
+# Instantiate container with: docker run --name supersede-mysql -e MYSQL_ROOT_PASSWORD=supersede -d supersede/mysql

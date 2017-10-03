@@ -15,3 +15,7 @@ RUN sed -i -- 's/<Password>admin<\/Password>/<Password>admin2<\/Password>/g' /su
 EXPOSE 9447
 EXPOSE 5676
 CMD /supersede/wso2mb-3.2.0/bin/wso2server.sh -DportOffset=4
+
+# Requires: 
+# Create image with:  docker build -t supersede/mb .
+# Instantiate container with: docker run --name supersede-mb -p 9447:9447 -d supersede/mb

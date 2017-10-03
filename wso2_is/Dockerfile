@@ -37,3 +37,7 @@ RUN sed -i -- "s/<HideAdminServiceWSDLs>true<\/HideAdminServiceWSDLs>/<HideAdmin
 #Declare ports. When launching an image use -p 9445:9445 flag
 EXPOSE 9445
 CMD /supersede/wso2is-5.0.0/bin/wso2server.sh -DportOffset=2
+
+# Requires: 
+# Create image with:  docker build -t supersede/is .
+# Instantiate container with: docker run --name supersede-is -p 9445:9445 -d supersede/is
