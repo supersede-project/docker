@@ -38,7 +38,7 @@ ADD webapps/adaptation-dashboard.war /usr/local/tomcat/webapps
 WORKDIR /usr/local/tomcat/bin
 CMD ["catalina.sh", "run"]
 
-# Requires: Redis, ESB, IS, Postgres, MongoDB
+# Requires: Redis, ESB, IS, Postgres
 # Create image with:  docker build -t supersede/fe .
 # Instantiate container with: docker run -d -p 8080:8080 -v /home/yosu/Projects/Supersede/Git/docker/tomcat-fe/webapps:/usr/local/tomcat/webapps --link supersede-redis:redis --link supersede-esb:esb --link supersede-is:is --link supersede-postgres:postgres --link supersede-mongo:mongodb supersede/fe
 

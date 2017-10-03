@@ -11,7 +11,7 @@ WORKDIR /big_data/data_management/MetadataManagementSystem/MetadataFrontend
 ADD config.js .
 RUN cd . && npm install
 	
-EXPOSE 3000
+EXPOSE 3001
 
 # Requires: mdm-storage
 # Create image with:  docker build -t supersede/mdm-frontend .

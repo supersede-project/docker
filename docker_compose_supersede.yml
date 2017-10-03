@@ -1,0 +1,95 @@
+version: '2'
+services:
+  dss:
+    image: "supersede/dss"
+    ports:
+      - "9446:9446"
+    depends_on:
+      - "postgres"
+    container_name: supersede-dss
+  is:
+    image: "supersede/is"
+    ports:
+      - "9445:9445"
+    container_name: supersede-is
+  esb:
+    image: "supersede/esb"
+    ports:
+      - "9443:9443"
+      - "8280:8280"
+    container_name: supersede-esb
+  mb:
+    image: "supersede/mb"
+    ports:
+      - "9447:9447"
+      - "5676:5676"
+    container_name: supersede-mb
+  postgres:
+    image: "supersede/postgres"
+    container_name: supersede-postgres
+  mysql:
+    image: "supersede/mysql"
+    container_name: supersede-mysql
+  apache:
+    image: "supersede/apache"
+    container_name: supersede-apache
+  redis:
+    image: "redis:3.2.10"
+    container_name: supersede-redis
+  mongo:
+    image: "mongo:3.4.9"
+    container_name: supersede-mongo
+  replan_controller:
+    image: "supersede/replan-controller"
+    ports:
+      - "3000:3000"
+  mdm-storage:
+    image: "supersede/mdm-storage"
+    ports:
+      - "8082:8082"
+    depends_on:
+      - "mongo"
+  mdm-frontend:
+    image: "supersede/mdm-frontend"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - "mongo"
+  dm-optimizer:
+    image: "supersede/dm-optimizer"
+    ports:
+      - "8091:8091"
+    depends_on:
+      - "esb"
+      - "mb"
+      - "be"
+      - "fe"
+  adapter:
+    image: "supersede/adapter"
+    ports:
+      - "8090:8090"
+    depends_on:
+      - "esb"
+      - "be"
+      - "fe"
+  be:
+    image: "supersede/be"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - "esb"
+      - "mysql"
+  fe:
+    image: "supersede/fe"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - "esb"
+      - "is"
+      - "redis"
+      - "postgres"
+      
+      
+      
+      
+      
