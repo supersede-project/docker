@@ -5,11 +5,6 @@ MAINTAINER  Yosu Gorroñogoitia <jesus.gorronogoitia@atos.net>
 #Installing requirements
 RUN apt-get update && apt-get install -y git
 
-#Installing Tomcat
-RUN wget http://apache.uvigo.es/tomcat/tomcat-8/v8.0.46/bin/apache-tomcat-8.0.46.tar.gz
-RUN tar xvzf apache-tomcat-8.0.46.tar.gz
-RUN mv apache-tomcat-8.0.46 /usr/local/tomcat
-
 #Installing Gradle
 RUN wget https://services.gradle.org/distributions/gradle-4.2-bin.zip && \
     unzip gradle-4.2-bin.zip && mv gradle-4.2 /opt/gradle
@@ -31,24 +26,13 @@ ENV LD_LIBRARY_PATH /lib-override
 ADD config.properties .
 ADD web.xml src/main/webapp/WEB-INF/
 ADD gradle.properties .
-RUN /opt/gradle/bin/gradle war
-RUN cp build/libs/metadataStorage.war /usr/local/tomcat/webapps/
+RUN /opt/gradle/bin/gradle shadowJar
 		
-#Configuring Tomcat ports
-RUN sed -i -- 's/port="8080"/port="8082"/g' /usr/local/tomcat/conf/server.xml
-RUN sed -i -- 's/port="8005"/port="8007"/g' /usr/local/tomcat/conf/server.xml
-RUN sed -i -- 's/port="8009"/port="8011"/g' /usr/local/tomcat/conf/server.xml
-RUN sed -i -- 's/port="8443"/port="8445"/g' /usr/local/tomcat/conf/server.xml
-RUN sed -i -- 's/redirectPort="8443"/redirectPort="8445"/g' /usr/local/tomcat/conf/server.xml	
-	
 EXPOSE 8082
 # Requires: mongodb: link to mongodb container in docker compose
 # Create image with:  docker build -t supersede/mdm-storage .
 # Instantiate container with: docker run -p 8082:8082 --name mdm-storage -d --link supersede-mongo:mongo supersede/mdm-storage
 
-
-WORKDIR /usr/local/tomcat/bin
-
-CMD ./catalina.sh run
+CMD java -jar build/libs/MetadataStorage-0.0.1-SNAPSHOT.jar config.properties
 
 
