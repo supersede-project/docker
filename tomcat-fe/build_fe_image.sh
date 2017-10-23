@@ -8,6 +8,8 @@ PASSWORD=$1
 USER=supersede
 HOST=supersede.es.atos.net
 
+mkdir -p webapps
+
 #Frontend
 echo -e "\nRetrieving SUPERSEDE Frontend ...\n"
 FILE_IN=/opt/jenkins/apps/jenkins/jenkins_home/jobs/Supersede\ FE/workspace/applications/supersede-frontend/build/libs/supersede-frontend-0.2.1-SNAPSHOT.war
@@ -47,5 +49,5 @@ FILE_OUT=./webapps/adaptation-dashboard.war
 sshpass -p "$PASSWORD" scp $USER@$HOST:"\"$FILE_IN\"" $FILE_OUT
 
 echo -e "\nBuilding SUPERSEDE Frontend Services Image ...\n"
-#docker build -t supersede/fe .
+docker build -t supersede/fe .
 
