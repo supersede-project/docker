@@ -27,6 +27,7 @@ echo -e "\nBuilding SUPERSEDE Backend Services Image ...\n"
 cd ../tomcat-be/ && docker build -t supersede/be .
 
 echo -e "\nBuilding SUPERSEDE Frontend Services Image ...\n"
+echo -e "\nRetrieving SUPERSEDE Frontend Services from CI/CD Server ...\n"
 cd ../tomcat-fe/ && docker build -t supersede/fe .
 
 echo -e "\nBuilding SUPERSEDE Replan Controller Image ...\n"

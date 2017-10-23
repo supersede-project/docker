@@ -9,10 +9,13 @@ ADD multitenancy.properties /usr/local/tomcat/conf
 #Copy if.properties in $TOMCAT/conf/
 ADD if.properties /usr/local/tomcat/conf
 
+#Copy if.docker.properties in $TOMCAT/conf/
+ADD if.docker.properties /usr/local/tomcat/conf
+
 # FRONT-END
 
 #Copy ROOT.war in $TOMCAT/webapps/
-RUN rm -rf /usr/local/tomcat/webapps/ROOT/
+#RUN rm -rf /usr/local/tomcat/webapps/ROOT/
 ADD webapps/ROOT.war /usr/local/tomcat/webapps
 
 #Copy admin-user-manager-app.war in $TOMCAT/webapps/
@@ -20,8 +23,6 @@ ADD webapps/admin-user-manager-app.war /usr/local/tomcat/webapps
 
 #Copy configuration-tools.war in $TOMCAT/webapps/
 ADD webapps/configuration-tools.war /usr/local/tomcat/webapps
-
-#DM GAME
 
 #Copy supersede-dm-app.war in $TOMCAT/webapps/
 ADD webapps/supersede-dm-app.war /usr/local/tomcat/webapps
@@ -36,9 +37,36 @@ ADD webapps/adaptation-dashboard.war /usr/local/tomcat/webapps
 
 #Launch tomcat from $TOMCAT/bin to avoid the issue to locale the multitenancy.properties
 WORKDIR /usr/local/tomcat/bin
+
+#Configure Tomcat FE to use docker IF configuration
+RUN sed -e '106iJAVA_OPTS=-Dsupersede.if.properties=if.docker.properties' -i /usr/local/tomcat/bin/catalina.sh
+
+#TODO: unzip WARs and copy if.docker.properties in WEB-INF/classes for all deployed files
+RUN cd ../webapps; unzip ROOT.war -d ROOT; \
+	unzip admin-user-manager-app.war -d admin-user-manager-app; \
+	unzip configuration-tools.war -d configuration-tools; \
+	unzip supersede-dm-app.war -d supersede-dm-app; \
+	unzip adaptation-dashboard.war -d adaptation-dashboard; \
+	unzip release-planner-app.war -d release-planner-app;
+	
+RUN cp ../conf/if.docker.properties ../webapps/ROOT/WEB-INF/classes/; \
+	cp ../conf/if.docker.properties ../webapps/admin-user-manager-app/WEB-INF/classes/; \
+	cp ../conf/if.docker.properties ../webapps/configuration-tools/WEB-INF/classes/; \
+	cp ../conf/if.docker.properties ../webapps/supersede-dm-app/WEB-INF/classes/; \
+	cp ../conf/if.docker.properties ../webapps/adaptation-dashboard/WEB-INF/classes/; \
+	cp ../conf/if.docker.properties ../webapps/release-planner-app/WEB-INF/classes/
+	
+#Configure Redis in Apps
+RUN sed -i -e 's/spring.redis.host=localhost/spring.redis.host=redis/g' ../webapps/ROOT/WEB-INF/classes/application.properties; \
+	sed -i -e 's/spring.redis.host=localhost/spring.redis.host=redis/g' ../webapps/admin-user-manager-app/WEB-INF/classes/application.properties; \
+	sed -i -e 's/spring.redis.host=localhost/spring.redis.host=redis/g' ../webapps/configuration-tools/WEB-INF/classes/application.properties; \
+	sed -i -e 's/spring.redis.host=localhost/spring.redis.host=redis/g' ../webapps/supersede-dm-app/WEB-INF/classes/application.properties; \
+	sed -i -e 's/spring.redis.host=localhost/spring.redis.host=redis/g' ../webapps/adaptation-dashboard/WEB-INF/classes/application.properties; \
+	sed -i -e 's/spring.redis.host=localhost/spring.redis.host=redis/g' ../webapps/release-planner-app/WEB-INF/classes/application.properties; 
+	
 CMD ["catalina.sh", "run"]
 
-# Requires: Redis, ESB, IS, Postgres
+# Requires: Redis, ESB, IS, Postgres, MB
 # Create image with:  docker build -t supersede/fe .
-# Instantiate container with: docker run -d -p 8080:8080 -v /home/yosu/Projects/Supersede/Git/docker/tomcat-fe/webapps:/usr/local/tomcat/webapps --link supersede-redis:redis --link supersede-esb:esb --link supersede-is:is --link supersede-postgres:postgres --link supersede-mongo:mongodb supersede/fe
-
+# Instantiate container with: docker run -d -p 8080:8080 -v /home/yosu/Projects/Supersede/Git/docker/tomcat-fe/webapps:/usr/local/tomcat/webapps --link supersede-redis:redis --link supersede-esb:esb --link supersede-is:is --link supersede-mb:mb --link supersede-postgres:postgres --link supersede-mongo:mongodb supersede/fe
+# To start Mongo: docker run -d --name supersede-mongo mongo:3.4.9
