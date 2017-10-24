@@ -1,5 +1,10 @@
 #!/bin/bash
-echo -e "\nStarting Docker Image. Please, provide sudo password ...\n"
+if [ "$#" -ne 1 ]; then
+    echo "Usage create_images.sh <supersede@supersede.es.atos.net password>"
+    exit 1
+fi
+
+echo -e "\nStarting Docker Image. Please, provide sudo password to start Docker service ...\n"
 sudo service docker start
 
 echo -e "\nBuilding Postgresql Image ...\n"
@@ -24,11 +29,11 @@ echo -e "\nBuilding WSO2 MB Image ...\n"
 cd ../wso2_mb/ && docker build -t supersede/mb .
 
 echo -e "\nBuilding SUPERSEDE Backend Services Image ...\n"
-cd ../tomcat-be/ && docker build -t supersede/be .
+cd ../tomcat-be/ && ./build_be_image.sh $1
 
 echo -e "\nBuilding SUPERSEDE Frontend Services Image ...\n"
 echo -e "\nRetrieving SUPERSEDE Frontend Services from CI/CD Server ...\n"
-cd ../tomcat-fe/ && docker build -t supersede/fe .
+cd ../tomcat-fe/ && ./build_fe_image.sh $1
 
 echo -e "\nBuilding SUPERSEDE Replan Controller Image ...\n"
 cd ../replan_controller/ && docker build -t supersede/replan-controller .

@@ -10,7 +10,7 @@ RUN wget https://services.gradle.org/distributions/gradle-4.2-bin.zip && \
     unzip gradle-4.2-bin.zip && mv gradle-4.2 /opt/gradle
     
 #Installing Maven
-RUN wget http://apache.rediris.es/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
+RUN wget http://apache.mirrors.nublue.co.uk/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
     tar xvzf apache-maven-3.3.9-bin.tar.gz && mv apache-maven-3.3.9 /opt/maven
 
 #Clone Supersede Dynamic Adaptation repository: https://github.com/supersede-project/dyn_adapt.git 
