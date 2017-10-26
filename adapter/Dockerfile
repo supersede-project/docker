@@ -31,13 +31,13 @@ RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib
 RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
 ENV LD_LIBRARY_PATH /lib-override
 
-RUN cd Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor/ && \
-	./installDependencies.sh && \
+WORkDIR /dyn_adapt/Enactment/components/enactor/eu.supersede.dynadapt.serviceCompositionEnactor
+RUN ./installDependencies.sh && \
 	mvn clean install && \
 	cp target/ServiceCompositionEnactor-0.0.1-SNAPSHOT.jar ../eu.supersede.dynadapt.enactor.EnactorFactory/lib/
-RUN cd Enactment/services/eu.supersede.dynadapt.adapter.service/ && mkdir -p logs && mvn clean package
-
-WORkDIR Enactment/services/eu.supersede.dynadapt.adapter.service
+	
+WORkDIR /dyn_adapt/Enactment/services/eu.supersede.dynadapt.adapter.service
+RUN mkdir -p logs && mvn clean package
 
 EXPOSE 8090
 

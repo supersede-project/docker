@@ -31,12 +31,10 @@ RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib
 RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
 ENV LD_LIBRARY_PATH /lib-override
 
-RUN cd DM/components/eu.supersede.dynadapt.dm.optimizer && \
-    ./installGPLibDependency.sh && \
+WORkDIR /dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer
+RUN ./installGPLibDependency.sh && \
     mvn clean package -Dmaven.test.skip=true
     
-WORkDIR DM/components/eu.supersede.dynadapt.dm.optimizer
-
 EXPOSE 8091
 
 # Requires: ESB, MB, Tomcat-BE (Model Repository), Tomcat-FE (Adaptation-Dashboard)
