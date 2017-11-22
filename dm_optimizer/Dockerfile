@@ -25,11 +25,11 @@ RUN ./buildEclipseDependencies.sh
 
 #WORKAROUND: Modify /etc/hosts
 #http://jasonincode.com/customizing-hosts-file-in-docker/
-RUN cp /etc/hosts /tmp/hosts
-RUN echo '192.168.145.13	supersede.es.atos.net' >> /tmp/hosts
-RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib-override
-RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
-ENV LD_LIBRARY_PATH /lib-override
+#RUN cp /etc/hosts /tmp/hosts
+#RUN echo '192.168.145.13	supersede.es.atos.net' >> /tmp/hosts
+#RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib-override
+#RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
+#ENV LD_LIBRARY_PATH /lib-override
 
 WORkDIR /dyn_adapt/DM/components/eu.supersede.dynadapt.dm.optimizer
 RUN ./installGPLibDependency.sh && \

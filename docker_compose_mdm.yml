@@ -6,6 +6,8 @@ services:
       - "8082:8082"
     depends_on:
       - "mongo"
+    links:
+      - mongo
     container_name: mdm-storage
   mdm-frontend:
     image: "supersede/mdm-frontend"
@@ -13,9 +15,26 @@ services:
       - "3001:3001"
     depends_on:
       - "mdm-storage"
+    links:
+      - mdm-storage
     container_name: mdm-frontend
   mongo:
     image: "mongo:3.4.9"
     container_name: mongo
+  esb:
+    image: "supersede/esb"
+    ports:
+      - "9443:9443"
+      - "8280:8280"
+    depends_on:
+      - "is"
+    links:
+      - is
+      - mdm-frontend:mdm
+  is:
+    image: "supersede/is"
+    ports:
+      - "9445:9445"
+    container_name: supersede-is
  
     

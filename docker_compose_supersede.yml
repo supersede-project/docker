@@ -17,6 +17,8 @@ services:
     ports:
       - "9443:9443"
       - "8280:8280"
+    depends_on:
+      - "is"
     container_name: supersede-esb
   mb:
     image: "supersede/mb"
@@ -54,7 +56,7 @@ services:
     ports:
       - "3001:3001"
     depends_on:
-      - "mongo"
+      - "mdm-storage"
   dm-optimizer:
     image: "supersede/dm-optimizer"
     ports:

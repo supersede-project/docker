@@ -16,17 +16,17 @@ WORKDIR /big_data/data_management/MetadataManagementSystem/MetadataStorage
 
 #WORKAROUND: Modify /etc/hosts
 #http://jasonincode.com/customizing-hosts-file-in-docker/
-RUN cp /etc/hosts /tmp/hosts
-RUN echo '192.168.145.13	supersede.es.atos.net' >> /tmp/hosts
-RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib-override
-RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
-ENV LD_LIBRARY_PATH /lib-override
+#RUN cp /etc/hosts /tmp/hosts
+#RUN echo '192.168.145.13	supersede.es.atos.net' >> /tmp/hosts
+#RUN mkdir -p -- /lib-override && cp /lib/x86_64-linux-gnu/libnss_files.so.2 /lib-override
+#RUN sed -i 's:/etc/hosts:/tmp/hosts:g' /lib-override/libnss_files.so.2
+#ENV LD_LIBRARY_PATH /lib-override
 
 #Building and deploying MetadataStorage
 ADD config.properties .
 ADD web.xml src/main/webapp/WEB-INF/
 ADD gradle.properties .
-RUN /opt/gradle/bin/gradle shadowJar
+RUN /opt/gradle/bin/gradle shadowJar --refresh-dependencies
 		
 EXPOSE 8082
 # Requires: mongodb: link to mongodb container in docker compose

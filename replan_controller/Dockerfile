@@ -6,7 +6,7 @@ MAINTAINER  Yosu Gorroñogoitia <jesus.gorronogoitia@atos.net>
 RUN apt-get update && apt-get install -y git postgresql-server-dev-all
 
 #Clone Supersede Replan repository: https://github.com/supersede-project/big_data.git
-RUN cd / && git clone https://github.com/supersede-project/replan.git 
+RUN cd / && git clone https://github.com/supersede-project/replan_controller.git -b development
 
 WORKDIR /replan/replan_controller
 RUN bundle update
