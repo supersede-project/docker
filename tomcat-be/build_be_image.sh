@@ -78,7 +78,7 @@ sshpass -p "$PASSWORD" scp $USER@$HOST:"\"$FILE_IN\"" $FILE_OUT
 
 #Replan Optimizer 
 echo -e "\nRetrieving SUPERSEDE Replan Optimizer ...\n"
-FILE_IN=/opt/jenkins/apps/jenkins/jenkins_home/jobs/Replan\ Optimizer/workspace/replan_optimizer/build/libs/replan_optimizer-0.0.1.war
+FILE_IN=/opt/jenkins/apps/jenkins/jenkins_home/jobs/Replan\ Optimizer/workspace/build/libs/replan_optimizer-0.0.1.war
 FILE_OUT=./webapps/replan_optimizer.war
 sshpass -p "$PASSWORD" scp $USER@$HOST:"\"$FILE_IN\"" $FILE_OUT
 

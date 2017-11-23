@@ -1,0 +1,21 @@
+version: '2'
+services:
+  replan:
+    image: "supersede/replan-controller"
+    ports:
+      - "3000:3000"
+    container_name: replan
+  is:
+    image: "supersede/is"
+    ports:
+      - "9445:9445"
+    container_name: supersede-is
+  esb:
+    image: "supersede/esb"
+    ports:
+      - "9443:9443"
+      - "8280:8280"
+    depends_on:
+      - "is"
+    container_name: supersede-esb
+    

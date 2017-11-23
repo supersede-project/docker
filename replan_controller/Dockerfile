@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y git postgresql-server-dev-all
 #Clone Supersede Replan repository: https://github.com/supersede-project/big_data.git
 RUN cd / && git clone https://github.com/supersede-project/replan_controller.git -b development
 
-WORKDIR /replan/replan_controller
+WORKDIR /replan_controller
 RUN bundle update
 RUN rake db:migrate
 RUN rake db:seed

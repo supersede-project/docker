@@ -38,7 +38,7 @@ sshpass -p "$PASSWORD" scp $USER@$HOST:"\"$FILE_IN\"" $FILE_OUT
 
 #Replan Dashboard
 echo -e "\nRetrieving SUPERSEDE Frontend Replan Dashboard ...\n"
-FILE_IN=/opt/jenkins/apps/jenkins/jenkins_home/jobs/Replan\ Dashboard/workspace/replan_dashboard/release-planner-app/build/libs/release-planner-app-0.2-SNAPSHOT.war
+FILE_IN=/opt/jenkins/apps/jenkins/jenkins_home/jobs/Replan\ Dashboard/workspace/release-planner-app/build/libs/release-planner-app-0.2-SNAPSHOT.war
 FILE_OUT=./webapps/release-planner-app.war
 sshpass -p "$PASSWORD" scp $USER@$HOST:"\"$FILE_IN\"" $FILE_OUT
 

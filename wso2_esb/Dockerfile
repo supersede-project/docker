@@ -17,6 +17,19 @@ RUN sed -i "/<\/messageFormatters>/ s/.*/\t<messageFormatter contentType= \"text
 
 RUN sed -i "/<\/axisconfig>/ s/.*/\t<transportSender name=\"mailto\" class=\"org.apache.axis2.transport.mail.MailTransportSender\">\n\t\t<parameter name=\"mail.smtp.host\">smtp.gmail.com<\/parameter>\n\t\t<parameter name=\"mail.smtp.port\">587<\/parameter>\n\t\t<parameter name=\"mail.smtp.starttls.enable\">true<\/parameter>\n\t\t<parameter name=\"mail.smtp.auth\">true<\/parameter>\n\t\t<parameter name=\"mail.smtp.user\">supersedeproject@gmail.com<\/parameter>\n\t\t<parameter name=\"mail.smtp.password\">$upR$Pjct0<\/parameter>\n\t\t<parameter name=\"mail.smtp.from\">supersedeproject@gmail.com<\/parameter>\n\t<\/transportSender>\n&/" /supersede/wso2esb-5.0.0/repository/conf/axis2/axis2.xml
 
+#Configure support for multipart/form-data
+#This requires to enable the following Message builders and formatters in Axis2 configuration of WSO2 ESB:
+#<messageBuilder contentType="multipart/form-data"
+#      class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
+#<messageFormatter contentType="multipart/form-data"
+#      class="org.wso2.carbon.relay.ExpandingMessageFormatter"/>
+#in conf file: 
+#/home/supersede/software/esb/wso2esb-4.9.0/repository/conf/axis2/axis2.xml
+
+RUN sed -i "/<\/messageFormatters>/ s/.*/\t<messageFormatter contentType= \"multipart\/form-data\"\n\t\t\tclass=\"org.wso2.carbon.relay.ExpandingMessageFormatter\"\/>\n&/" /supersede/wso2esb-5.0.0/repository/conf/axis2/axis2.xml
+RUN sed -i "/<\/messageBuilders>/ s/.*/\t<messageBuilder contentType= \"multipart\/form-data\"\n\t\t\tclass=\"org.wso2.carbon.relay.BinaryRelayBuilder\"\/>\n&/" /supersede/wso2esb-5.0.0/repository/conf/axis2/axis2.xml
+
+
 #Upload Supersede modules
 COPY *.car /supersede/wso2esb-5.0.0/repository/deployment/server/carbonapps/
 WORKDIR /supersede
