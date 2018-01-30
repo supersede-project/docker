@@ -78,5 +78,5 @@ sshpass -p "$PASSWORD" scp $USER@$HOST:"\"$FILE_IN\"" $FILE_OUT
 
 
 echo -e "\nBuilding SUPERSEDE Backend Services Image ...\n"
-#docker build -t supersede/be -f Dockerfile_Senercon .
+docker build -t supersede/be -f Dockerfile_Senercon .
 
