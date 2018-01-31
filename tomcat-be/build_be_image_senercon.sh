@@ -1,5 +1,5 @@
-if [ "$#" -ne 1 ]; then
-    echo "Usage build_be_image.sh <supersede@supersede.es.atos.net password>"
+if [ "$#" -lt 1 ]; then
+    echo "Usage build_be_image.sh <supersede@supersede.es.atos.net password> [--no-cache]"
     exit 1
 fi
 
@@ -78,5 +78,5 @@ sshpass -p "$PASSWORD" scp $USER@$HOST:"\"$FILE_IN\"" $FILE_OUT
 
 
 echo -e "\nBuilding SUPERSEDE Backend Services Image ...\n"
-docker build -t supersede/be -f Dockerfile_Senercon .
+docker build $2 -t supersede/be -f Dockerfile_Senercon .
 
