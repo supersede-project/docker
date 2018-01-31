@@ -2,17 +2,22 @@
 set -e
 set -x
 
-mysql -u supersede -p'supersede' feedback_orchestrator < /supersede/docker_supersede_orchestrator_spring_clean.sql
-#mysql -u supersede -p'supersede' feedback_orchestrator < /supersede/orchestrator_monitoring_test_dump.sql
-mysql -u supersede -p'supersede' feedback_repository < /supersede/docker_supersede_repository_spring_clean.sql
-mysql -u supersede -p'supersede' monitoring_orchestrator < /supersede/orchestrator.sql
-mysql -u supersede -p'supersede' model_repository_manager < /supersede/model_repository_deployment.sql
-
+# FG ORCHESTRATOR schema
+mysql -u supersede -p'supersede' feedback_orchestrator < /supersede/orchestrator/v2_table_structure.sql
+mysql -u supersede -p'supersede' feedback_orchestrator < /supersede/orchestrator/orchestrator_user_data.sql
 #Apply patches
+mysql -u supersede -p'supersede' feedback_orchestrator < /supersede/orchestrator/0001_add_order_to_parameter.sql
 
-#mysql -u supersede -p'supersede' feedback_orchestrator < /supersede/migrations/orchestrator/0002_active_flag_configuration_20161111.sql
-#mysql -u supersede -p'supersede' feedback_orchestrator < /supersede/migrations/orchestrator/0003_timestamp_millisecond_20161123.sql
+# FG REPOSITORY schema
+mysql -u supersede -p'supersede' feedback_repository < /supersede/repository/v2_table_structure.sql
+mysql -u supersede -p'supersede' feedback_repository < /supersede/repository/repository_user_data.sql
 
-#mysql -u supersede -p'supersede' feedback_repository < /supersede/migrations/repository/0010_change_table_collations_20161111.sql
-#mysql -u supersede -p'supersede' feedback_repository < /supersede/migrations/repository/0011_change_timestamp_precision_20161123.sql
+# MONITORING ORCHESTRATOR schema
+mysql -u supersede -p'supersede' monitoring_orchestrator < /supersede/monitoring/orchestrator.sql
+
+# MODEL REPOSITORY schema
+mysql -u supersede -p'supersede' model_repository_manager < /supersede/model_manager/model_repository_deployment.sql
+
+
+
 

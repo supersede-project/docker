@@ -43,14 +43,12 @@ RUN cd ../webapps; unzip ROOT.war -d ROOT; \
 	unzip admin-user-manager-app.war -d admin-user-manager-app; \
 	unzip configuration-tools.war -d configuration-tools; \
 	unzip supersede-dm-app.war -d supersede-dm-app; \
-	unzip adaptation-dashboard.war -d adaptation-dashboard; \
 	unzip release-planner-app.war -d release-planner-app;
 	
 RUN cp ../conf/if.docker.properties ../webapps/ROOT/WEB-INF/classes/; \
 	cp ../conf/if.docker.properties ../webapps/admin-user-manager-app/WEB-INF/classes/; \
 	cp ../conf/if.docker.properties ../webapps/configuration-tools/WEB-INF/classes/; \
 	cp ../conf/if.docker.properties ../webapps/supersede-dm-app/WEB-INF/classes/; \
-	cp ../conf/if.docker.properties ../webapps/adaptation-dashboard/WEB-INF/classes/; \
 	cp ../conf/if.docker.properties ../webapps/release-planner-app/WEB-INF/classes/
 	
 #Configure Redis in Apps
